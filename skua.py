@@ -5,9 +5,10 @@ Created on Mon March 2 11:05:00 2016
 """
 
 import urllib2, requests, time, random,sys
+from collections import OrderedDict
 
 # Version number
-version = '0.0.1'
+version = '0.0.2'
 
 # Default values for certain parameters:
 
@@ -50,15 +51,19 @@ else:
 	response = urllib2.urlopen(req)
 	html = response.read()
 	pieces = html.split("\"")
-	for piece in pieces:
-		if piece.endswith(extension):
-			if piece.startswith("//"):
-				piece = "https:"+piece
-			print "Downloading "+piece+"..."
-			data = requests.get(piece)
-			pieceNameParts = piece.split("/")
-			f = open(prefix+pieceNameParts[-1], "wb")
+	items = [piece for piece in pieces if piece.endswith(extension)]
+	itemsNoDuplicates = list(OrderedDict.fromkeys(items))
+	for item in itemsNoDuplicates:
+		if item.startswith("//"):
+			item = "https:"+item
+		print "Downloading "+item+"..."
+		try:
+			data = requests.get(item)
+			itemNameParts = item.split("/")
+			f = open(prefix+itemNameParts[-1], "wb")
 			f.write(data.content)
 			f.close()
 			time.sleep(random.uniform(minimumTimeout,maximumTimeout))
-
+		except:
+			pass
+		
