@@ -1,7 +1,11 @@
-"""
-Created on Mon March 2 11:05:00 2016
+#!/usr/bin/env python
 
-@author: THLO
+"""
+skua is a tool to download data, such as pictures or videos, from websites.
+
+Usage information is shown by running: ./skua.py
+
+More information is available at https://github.com/THLO/skua.
 """
 
 import urllib2, requests, time, random,sys
@@ -9,7 +13,7 @@ import argparse
 from collections import OrderedDict
 
 # Version number
-version = '0.0.3'
+version = '0.0.4'
 
 # Default values for certain parameters:
 
