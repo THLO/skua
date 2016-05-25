@@ -1,0 +1,7 @@
+*.pyc
+*~
+map.egg-info/
+deb_dist/
+signed_deb/
+dist/
+installation/installed_files.txt
