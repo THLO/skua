@@ -1,6 +1,6 @@
 *.pyc
 *~
-map.egg-info/
+skua.egg-info/
 deb_dist/
 signed_deb/
 dist/
